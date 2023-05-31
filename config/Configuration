@@ -35,19 +35,19 @@ gpio:
 FIN DE RAFA */
 
 /* type of a tty device */
-tty:
 	/* RAFA 
+tty:
 	on uart
 		-i ttyinit      -o ionull       -c ionull
 		-r ttyread      -g ttygetc      -p ttyputc
 		-w ttywrite     -s ioerr        -n ttycontrol
 		-intr ttyhandler
-	FIN DE RAFA */
 	on uart
 		-i ionull      -o ionull       -c ionull
 		-r ionull      -g ionull      -p ionull
 		-w ionull     -s ioerr        -n ionull
 		-intr ionull
+	FIN DE RAFA */
 
 /* type of ram disk */
 /* RAFA
@@ -89,7 +89,8 @@ FIN DE RAFA */
 /*   will be present in the system					*/
 
    /* Define the console device to be a tty and specify CSR*/
-   CONSOLE is tty  on uart  csr 0x40013800 -irq 53
+   /* CONSOLE is tty  on uart  csr 0x40013800 -irq 53 */
+   CONSOLE is null on nothing
    
    /* Define the console device to be a tty and specify CSR*/
 /* RAFA   GPIO0 is gpio  on standard_gpio  csr 0x40010800 -irq 99 */
@@ -117,5 +118,5 @@ FIN DE RAFA */
 
 /* Configuration and Size Constants */
 
-#define	NPROC	     5		/* number of user processes		*/
+#define	NPROC	     4		/* number of user processes		*/
 #define	NSEM	     4		/* number of semaphores			*/
