@@ -20,7 +20,7 @@ wget https://se.fi.uncoma.edu.ar/pse/referencia/xinu_avr_pse.tar.gz
 Configurar y compilar
 ---------------------
 
-tar xvzf xinu-avr-pse.tar.gz
+tar xvzf xinu_avr_pse.tar.gz
 cd xinu-avr-pse/compile
 
 Editar el Makefile en ese directorio, y seleccionar una de las dos opciones 
