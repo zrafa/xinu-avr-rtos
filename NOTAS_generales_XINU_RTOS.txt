@@ -41,6 +41,12 @@ También utiliza inicialmente el UART a 9600. Se puede agregar en main/
 un driver UART propio, pero se debe establecer la velocidad a 9600 (vea la
 aplicación de ejemplo).
 
+Cuando XINU RTOS "inicia", realiza dos veces un parpadeo del led de la placa.
+También informa la cantidad de memoria libre para usar para los procesos.
+En total, existen 1280 bytes de memoria libre.
+system/initialize.c crea el proceso main, y le asigna 256 bytes de esa memoria
+libre.
+
 
 Listado de algunos System calls de XINU RTOS
 --------------------------------------------
