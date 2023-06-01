@@ -5,6 +5,7 @@ typedef unsigned int size_t;
 #include <avr/pgmspace.h>
 
 const __flash char sysinit_m0[] = "\nWelcome to Xinu!\n\n\r\tXinu OS Copyright (c) 2012, 2015\n\r\tDouglas E. Comer and CRC Press, Inc.\n\n\r\tXinu OS for AVR atmega328p v0.1 (c) 2020\n\r\tRafael Ignacio Zurita <rafa@fi.uncoma.edu.ar>\n\n\r";
+//const __flash char sysinit_m0[] = "\nXinu OS Copyright (c) 2012, 2015\n\r\tDouglas E. Comer and CRC Press, Inc.\n\n\r\tXinu OS for AVR atmega328p v0.1 (c) 2020\n\r\tRafael Ignacio Zurita <rafa@fi.uncoma.edu.ar>\n\n\r";
 const __flash char m1[] = "\n\nRecreating shell\n\n";
 const __flash char m2[] = "Out of message nodes";
 const __flash char m3[] = "\n\nAll user processes have completed.\n\n";

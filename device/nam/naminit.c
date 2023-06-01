@@ -78,7 +78,7 @@ status	naminit(void)
 		}
 
 		// RAFA
-		kprintf("  %s\n",tmpstr);
+		// kprintf("  %s\n",tmpstr);
 
 		retval = mount(tmpstr, NULLSTR, devptr->dvnum);
                 if (retval == SYSERR) {
