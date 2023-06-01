@@ -51,5 +51,6 @@ make clean
 make
 make flash
 
-
+En Linux verificar la salida del sistema embebido via serial 
+screen /dev/ttyUSB0 9600
 
