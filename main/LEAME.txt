@@ -5,11 +5,11 @@ XINU RTOS.
 Existen tres tareas en ejecución (cuatro si contamos a la tarrea null de XINU):
 
 main()		: muestra un mensaje por el UART indefinidamente cada 1 seg.
-		  prioridad 20, y 256 byte de PILA
+		  prioridad 20, y 256 bytes de PILA.
 led_placa()	: parpadea el LED de la placa indefinidamente.
-		  prioridad 20, y 64 bytes de PILA
+		  prioridad 20, y 64 bytes de PILA.
 comunicacion()	: muestra un segundo mensaje por el UART indefinidamente.
-		  prioridad 20, y 256 byte de PILA
+		  prioridad 20, y 256 bytes de PILA.
 
 Como las tareas main() y comunicacion() compiten por el uso del UART para
 emitir un mensaje, se utilizan dos semáforos para "alternar" el uso del 
