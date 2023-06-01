@@ -34,8 +34,12 @@ void clkinit(void)
          */
 	TCCR0B |= (1<<CS01) | (1<<CS00);   //clock select is divided by 64.
 	TCCR0A |= (1<<WGM01);              //sets mode to CTC
-	// OCR0A = 0xF9;                      //sets TOP to 124 so the timer will overflow every 1 ms.    
-	OCR0A = 63;                      //sets TOP to 124 so the timer will overflow every 1 ms.    
+
+	#if ATMEGA
+		OCR0A = 0xF9;                      //sets TOP to 124 so the timer will overflow every 1 ms.    
+	#else
+		OCR0A = 63;                      //sets TOP to 124 so the timer will overflow every 1 ms.    
+	#endif
 	TIMSK0 |= (1<<OCIE0A);              //Output Compare Match A Interrupt Enable
 
 	return;

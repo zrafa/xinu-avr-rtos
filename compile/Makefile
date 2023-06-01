@@ -8,6 +8,12 @@
 #									#
 #########################################################################
 
+PLATFORM	=	-Dlgt8f328p
+HZ		=	4000000
+
+# PLATFORM	=	-DATMEGA
+# HZ		=	16000000
+
 COMPILER_ROOT	=	avr-
 PNAME		=	ATMEGA328P
 PLAT		=	Platform_$(PNAME)
@@ -52,7 +58,8 @@ INCLUDE		=	-I$(TOPDIR)/include
 DEFS		= 	-DVERSION=\""Xinu AVR 0.1 RAFA\0"\"
 
 # Compiler flags
-CFLAGS  = -DF_CPU=4000000UL -mmcu=atmega328p  -fno-builtin -c -Wall -Os ${DEFS} ${INCLUDE}
+# CFLAGS  = -DF_CPU=16000000UL -mmcu=atmega328p  -fno-builtin -c -Wall -Os ${DEFS} ${INCLUDE}
+CFLAGS  = -DF_CPU=$(HZ)UL $(PLATFORM) -mmcu=atmega328p  -fno-builtin -c -Wall -Os ${DEFS} ${INCLUDE}
 # RAFA AGREGA LAS 3 de ABAJO para reducir size
 CFLAGS += -Wl,-static
 CFLAGS += -ffunction-sections
