@@ -1,5 +1,8 @@
 /* xinu.h - include all system header files */
 
+#ifndef _XINU_H
+#define _XINU_H
+
 /* avr specific */
 #include <avr_messages.h>
 
@@ -42,3 +45,5 @@
 #include <string.h>
 #include <syscall.h>
 #include <avr_serial.h>
+
+#endif

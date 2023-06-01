@@ -1,12 +1,19 @@
 #include <xinu.h>
+#include <avr/interrupt.h>
 #include "serial.h"
+#include "sync.h"
 
-sid32 prod, comm;
+
+#define SEM_COM 0
+#define SEM_PROD 1
 
 int comunicacion(void)
 {
 	while(1) {
+		sync_wait(SEM_PROD);
 		serial_put_str("Arriba america!\n");
+		sync_signal(SEM_COM);
+		
 		sleep(2);
 	}
 
@@ -47,16 +54,26 @@ void freemem_get(void)
 
 int main(void)
 {
-//	prod = semcreate(0);
 
 	serial_init();
+
+
 	resume(create(led_placa, 64, 10, "led", 0));
 	resume(create(comunicacion, 256, 20, "comm", 0));
+
+	sync_set(SEM_COM, 1);
+	sync_set(SEM_PROD, 0);
+
 	while(1) {
 		sleep(1);
+
+		sync_wait(SEM_COM);
 		//kprintf("hola mundo\n");
 		serial_put_str("hola mundo\n");
-		freemem_get();
+		sync_signal(SEM_PROD);
+		
+//		freemem_get();
+		
 	}
 
 	return 0;
