@@ -34,6 +34,13 @@ mas alta prioridad en estado de LISTO.
 Si no existe ningun proceso en estado de LISTO, entonces el kernel de XINU
 le asigna la CPU al proceso null.
 
+Esta versión de XINU utiliza el timer0 del AVR. POR LO QUE NO PUEDE 
+USARSE ESE TIMER! para la aplicación embebida.
+
+También utiliza inicialmente el UART a 9600. Se puede agregar en main/
+un driver UART propio, pero se debe establecer la velocidad a 9600 (vea la
+aplicación de ejemplo).
+
 
 Listado de algunos System calls de XINU RTOS
 --------------------------------------------
