@@ -1,6 +1,8 @@
 #include <xinu.h>
 #include "serial.h"
 
+sid32 prod, comm;
+
 int comunicacion(void)
 {
 	while(1) {
@@ -45,14 +47,16 @@ void freemem_get(void)
 
 int main(void)
 {
+//	prod = semcreate(0);
+
 	serial_init();
-	resume(create(led_placa, 128, 10, "led", 0));
-	resume(create(comunicacion, 512, 20, "comm", 0));
+	resume(create(led_placa, 64, 10, "led", 0));
+	resume(create(comunicacion, 256, 20, "comm", 0));
 	while(1) {
 		sleep(1);
 		//kprintf("hola mundo\n");
 		serial_put_str("hola mundo\n");
-		//freemem_get();
+		freemem_get();
 	}
 
 	return 0;
