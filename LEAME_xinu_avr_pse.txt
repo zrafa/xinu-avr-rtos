@@ -14,7 +14,7 @@ build-essential
 Descargar XINU RTOS baremetal
 -----------------------------
 
-wget
+wget https://se.fi.uncoma.edu.ar/pse/referencia/xinu_avr_pse.tar.gz
 
 
 Configurar y compilar
