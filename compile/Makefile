@@ -45,7 +45,6 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 REBUILDFLAGS	=	-s $(TOPDIR)/system   	\
 			-s $(TOPDIR)/lib			\
 			-s $(TOPDIR)/device/nam			\
-			-s $(TOPDIR)/device/tty			\
 			-s $(TOPDIR)/main  
 
 INCLUDE		=	-I$(TOPDIR)/include
