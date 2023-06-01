@@ -54,7 +54,7 @@ char value;
  */
 ISR(USART_RX_vect){
 	value = UDR0;             /* read UART register into value */
-	ttyhandler (1, value, 0);
+	// ttyhandler (1, value, 0);
 }
 
 char serial_get_char(void)
