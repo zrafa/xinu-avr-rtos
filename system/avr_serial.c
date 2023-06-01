@@ -35,7 +35,8 @@ void serial_init()
 	serial_port->status_control_c = (unsigned char)(INIT);
 
 	/* activates transmision and reception */
-	serial_port->status_control_b = (unsigned char)(EN_RX_TX | (1<<UART_RXCIE0));
+	// serial_port->status_control_b = (unsigned char)(EN_RX_TX | (1<<UART_RXCIE0));
+	serial_port->status_control_b = (unsigned char)(EN_RX_TX);
 
 }
 
@@ -52,10 +53,10 @@ char value;
 /*
  * RX interrupt service rutine
  */
-ISR(USART_RX_vect){
-	value = UDR0;             /* read UART register into value */
-	// ttyhandler (1, value, 0);
-}
+ ISR(USART_RX_vect){
+ 	value = UDR0;             /* read UART register into value */
+//	// ttyhandler (1, value, 0);
+ }
 
 char serial_get_char(void)
 {

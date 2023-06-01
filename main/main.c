@@ -48,8 +48,9 @@ int main(void)
 	resume(create(led_placa, 128, 10, "led", 0));
 	while(1) {
 		sleep(1);
-		serial_put_char('A');
-//		freemem_get();
+		kprintf("hola mundo\n");
+		//serial_put_str("hola mundo\n");
+		freemem_get();
 	}
 //	resume(create(comunicacion, 512, 20, "comm", 0));
 
