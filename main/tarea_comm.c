@@ -6,10 +6,7 @@
  */
 
 #include <xinu.h>
-#include <avr/interrupt.h>
 #include "serial.h"
-#include "sync.h"
-
 
 #define SEM_COM 0
 #define SEM_PROD 1

@@ -15,9 +15,9 @@ int led_placa(void)
     *DDR_B = 0x20; // control: salida.
 
     while (1){
-        sleepms(500);
+        sleepms(200);
         *PUERTO_B |= 0x20; // high
-        sleepms(500);
+        sleepms(200);
         *PUERTO_B = (*PUERTO_B & (~0x20)); // low
     }
 

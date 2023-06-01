@@ -8,9 +8,7 @@
  */
 
 #include <xinu.h>
-#include <avr/interrupt.h>
 #include "serial.h"
-#include "sync.h"
 
 /* definicion de tareas (cuyo codigo fuente es externo) */
 extern int led_placa(void);
