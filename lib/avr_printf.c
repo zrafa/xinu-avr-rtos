@@ -6,6 +6,6 @@ void avr_kprintf(const __flash char m[])
 {
 	int i;
 	for (i=0; i<strlen_P(m); i++)
-		serial_put_char(m[i]);
+		kserial_put_char(m[i]);
 }
 

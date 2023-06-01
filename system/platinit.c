@@ -25,7 +25,7 @@ void platinit(void)
 	blink_avr();
 
 	/* avr uart init */
-        serial_init();
+        kserial_init();
 
 	/* Initialize the Interrupt Controller (evec.c) */
 	initintc();

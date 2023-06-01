@@ -22,8 +22,8 @@ syscall kputc(
 	mask = disable();
 
 	if (c == '\n')
-		serial_put_char('\r');
-	serial_put_char(c);
+		kserial_put_char('\r');
+	kserial_put_char(c);
 
 	restore(mask);
 	return OK;

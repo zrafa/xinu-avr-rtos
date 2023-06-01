@@ -22,30 +22,30 @@ typedef struct {
 
 } volatile uart_t;
 
-volatile uart_t *serial_port = (uart_t *) (0xc0);
+volatile uart_t *kserial_port = (uart_t *) (0xc0);
 
-void serial_init() 
+void kserial_init() 
 {
 	/* conf High and Low registers using BAUD_PRESCALE */
 
-	serial_port->baud_rate_h = (unsigned char) (BAUD_PRESCALE>>8);
-	serial_port->baud_rate_l = (unsigned char) (BAUD_PRESCALE);
+	kserial_port->baud_rate_h = (unsigned char) (BAUD_PRESCALE>>8);
+	kserial_port->baud_rate_l = (unsigned char) (BAUD_PRESCALE);
 
 	/* 8bits frame, one parity bit and stop bit */
-	serial_port->status_control_c = (unsigned char)(INIT);
+	kserial_port->status_control_c = (unsigned char)(INIT);
 
 	/* activates transmision and reception */
 	// serial_port->status_control_b = (unsigned char)(EN_RX_TX | (1<<UART_RXCIE0));
-	serial_port->status_control_b = (unsigned char)(EN_RX_TX);
+	kserial_port->status_control_b = (unsigned char)(EN_RX_TX);
 
 }
 
 
-void serial_put_char (char outputChar)
+void kserial_put_char (char outputChar)
 {
 
-	while (!((serial_port->status_control_a) & (EN_TX)));
-		serial_port->data_es = outputChar;
+	while (!((kserial_port->status_control_a) & (EN_TX)));
+		kserial_port->data_es = outputChar;
 }
 
 char value;
@@ -58,17 +58,17 @@ char value;
 //	// ttyhandler (1, value, 0);
  }
 
-char serial_get_char(void)
+char kserial_get_char(void)
 {
 	/* Wait for the next character to arrive. */
-	while (!((serial_port->status_control_a) & (EN_RX)));
-		return (serial_port->data_es);
+	while (!((kserial_port->status_control_a) & (EN_RX)));
+		return (kserial_port->data_es);
 }
 
-void serial_put_str (char * msg)
+void kserial_put_str (char * msg)
 {
 	while (*msg) {
-		serial_put_char(*msg);
+		kserial_put_char(*msg);
 		msg++;
 	};
 }
