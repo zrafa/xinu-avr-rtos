@@ -6,6 +6,7 @@ código fuente:
 config/Configuration	: archivo de configuracion general
 include/		: cabeceras del kernel de XINU RTOS y sus bibliotecas
 lib/			: codigo fuente de las bibliotecas de XINU RTOS
+device/			: codigo fuente de los drivers de XINU RTOS
 system/			: codigo fuente del kernel de XINU RTOS
 main/			: codigo fuente de la aplicación embebida
 
