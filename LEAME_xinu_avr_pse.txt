@@ -14,14 +14,13 @@ build-essential
 Descargar XINU RTOS baremetal
 -----------------------------
 
-wget https://se.fi.uncoma.edu.ar/pse/referencia/xinu_avr_pse.tar.gz
+git clone https://github.com/zrafa/xinu-avr-rtos
 
 
 Configurar y compilar
 ---------------------
 
-tar xvzf xinu_avr_pse.tar.gz
-cd xinu-avr-pse/compile
+cd xinu-avr-rtos/compile
 
 Editar el Makefile en ese directorio, y seleccionar una de las dos opciones 
 que especifiquen su plataforma:
@@ -45,7 +44,7 @@ que usa XINU RTOS y el driver del serial.
 Compilar y verificar
 --------------------
 
-(estando en el directorio de trabajo xinu-avr-pse/compile/
+(estando en el directorio de trabajo xinu-avr-rtos/compile/
 
 make clean
 make
