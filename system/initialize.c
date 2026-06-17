@@ -46,10 +46,10 @@ pid32	currpid;		/* ID of currently executing process	*/
  *------------------------------------------------------------------------
  */
 
+uint32	free_mem;		/* Total amount of free memory	*/
 void	nulluser()
 {	
 	struct	memblk	*memptr;	/* Ptr to memory block		*/
-	uint32	free_mem;		/* Total amount of free memory	*/
 
 	/* Initialize the system */
 

@@ -83,6 +83,11 @@ extern	qid16	readylist;	/* global ID for list of ready processes*/
 
 #define	NULLSTK		64	/* stack size for null process		*/
 
+
+/* RAFA */
+extern uint32  free_mem;               /* Total amount of free memory  */
+/* FIN de RAFA */
+
 /* Prototypes of I/O functions used throughout the kernel */
 
 syscall	kprintf(char *fmt, ...);
