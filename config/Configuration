@@ -1,0 +1,60 @@
+/************************************************************************/
+/*									*/
+/* Configuration - Xinu device configuration specification file		*/
+/*									*/
+/* This file becomes input to the config program, which generates	*/
+/* 		conf.h  and  conf.c					*/
+/*									*/
+/* Entries for a device specify the functions that handle each of the	*/
+/* high-level I/O operations as follows:				*/
+/*									*/
+/*	-i    init	-o    open	-c    close			*/
+/*	-r    read	-w    write	-s    seek			*/
+/*	-g    getc	-p    putc	-n    control			*/
+/*	-intr int_hndlr	-csr  csr	-irq  irq			*/
+/*									*/
+/************************************************************************/
+
+/* Type Declarations for both real- and pseudo- device types */
+
+/* type of a null device */
+null:
+	on nothing
+		-i ionull	-o ionull	-c ionull
+		-r ionull	-g ionull	-p ionull
+		-w ionull	-s ioerr
+
+/* type of namespace device */
+/* ROLO
+nam:
+	on top
+		-i naminit 	-o namopen 	-c ioerr
+		-r ioerr 	-g ioerr 	-p ioerr
+		-w ioerr 	-s ioerr 	-n ioerr
+		-intr ioerr
+FIN DE ROLO */
+
+	
+%%
+
+/* Actual device declarations that each give the name of a device that	*/
+/*   will be present in the system					*/
+
+   /* Define the console device to be a tty and specify CSR*/
+   /* CONSOLE is tty  on uart  csr 0x40013800 -irq 53 */
+   CONSOLE is null on nothing
+   
+   /* Define a null device */
+   NULLDEV is null on nothing
+
+   /* Define a namespace device */
+/* ROLO
+   NAMESPACE is nam on top
+FIN DE ROLO */
+
+%%
+
+/* Configuration and Size Constants */
+
+#define	NPROC	     5		/* number of user processes		*/
+#define	NSEM	     8		/* number of semaphores			*/
