@@ -26,8 +26,8 @@ int main(void)
 		sleepms(1000);
 
 		n++;
-		serial_put_str("hola \n\r");
-		serial_put_int(n, 4);
+		serial_put_str("Hello World!. Free mem: ");
+		serial_put_int(free_mem, 4);
 		serial_put_str("\n\r");
 	}
 }
