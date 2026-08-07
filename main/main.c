@@ -16,19 +16,25 @@ void frec();
 
 int main(void)
 {
-	int n = 0;
+	int n = 100;
+    pid16 pid;
 
 	serial_init();
 
-	resume(create(led, 128, 20, "led", 2, 13, 500));
+    kprintf("%s sizeof(struct procent) %d\n", __func__, sizeof(struct procent));
+
+    pid = create(led, 400, 20, "led", 2, 13, 500);
+    kprintf("%s pid %d\n", __func__, pid);
+
+    resume(pid);
 
 	while(1) {
-		sleepms(1000);
+		sleepms(2000);
 
 		n++;
-		serial_put_str("Hello World!. Free mem: ");
-		serial_put_int(free_mem, 4);
-		serial_put_str("\n\r");
+		serial_put_str("Hello World ");
+		serial_put_int(n, 4);
+		serial_put_str("!\n");
 	}
 }
 

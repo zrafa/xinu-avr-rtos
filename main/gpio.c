@@ -56,7 +56,7 @@ volatile unsigned char *PORTD = (unsigned char *) 0x2B;
 int gpio_pin(int p, int op) 
 {
         unsigned char reg = p < 8? 0 : p < 14? 1 : 2;
-        unsigned char value;
+        unsigned char value = 0;
     
         switch(reg){
         case 0:

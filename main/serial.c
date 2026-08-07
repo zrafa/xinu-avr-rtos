@@ -114,7 +114,7 @@ void serial_put_str(char * str)
 }
 
 
-void serial_put_int (uint32 num, int length) {
+void serial_put_int (uint16 num, int length) {
     char digits[length];
 
     for(int i = 0; i < length; i++){
