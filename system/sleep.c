@@ -2,7 +2,7 @@
 
 #include <xinu.h>
 
-#define	MAXSECONDS	2147483		/* Max seconds per 32-bit msec	*/
+#define	MAXSECONDS	32		/* Max seconds per 16-bit msec	*/
 
 /*------------------------------------------------------------------------
  *  sleep  -  Delay the calling process n seconds
