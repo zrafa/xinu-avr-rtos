@@ -1,41 +1,56 @@
-/*
- * ex0: ejemplo0. 
- * main es la primer tarea puesta en ejecución por XINU RTOS.
- * Esta tarea crea una tarea y luego muestra un mensaje a 1hz.
+/* main.c: programa ejemplo con tres tareas concurrentes.
  *
- * Las 3 tareas son gestionadas por el RTOS, quien las ejecuta
- * de manera concurrente (null, main, y led).
+ * tarea_led: prioridad 20, pila 64 bytes.
+ * tarea_comunicaciones: prioridad 20, pila 256 bytes
+ * tarea_main: prioridad 20, pila 256 bytes
+ *
+ * dos semaforos para sincronizar una alternancia de uso del UART
  */
 
 #include <xinu.h>
 #include "serial.h"
 
-void led();
-void frec();
+/* definicion de tareas (cuyo codigo fuente es externo) */
+extern int led_placa(void);
+extern int comunicacion(void);
+
+/* nombre para dos semaforos a utilizar */
+#define SEM_COM 0
+#define SEM_PROD 1
 
 
+/* main es una tarea independiente y se la utiliza como tal */
 int main(void)
 {
-	int n = 100;
-    pid16 pid;
 
 	serial_init();
 
-    kprintf("%s sizeof(struct procent) %d\n", __func__, sizeof(struct procent));
+	/* inicializamos los semaforos */
+	sync_set(SEM_COM, 1);
+	sync_set(SEM_PROD, 0);
 
-    pid = create(led, 400, 20, "led", 2, 13, 500);
-    kprintf("%s pid %d\n", __func__, pid);
+	/* creamos y ponemos a ejecutar dos tareas */
+	resume(create(led_placa, 300, 10, "led", 0));
+	resume(create(comunicacion, 256, 20, "comm", 0));
 
-    resume(pid);
 
 	while(1) {
-		sleepms(2000);
+		sleep(1);
 
-		n++;
-		serial_put_str("Hello World ");
-		serial_put_int(n, 4);
-		serial_put_str("!\n");
+                /* como esta tarea comparte el serial con otra tarea, 
+                 * se lo sincroniza estilo productor-consumidor,
+                 * para que cada uno envie un mensaje de manera
+                 * alternada. Un mutex podría haber sido utilizado
+		 * si no es necesaria la alternancia.
+                 */
+
+		sync_wait(SEM_COM);
+			serial_put_str("hola mundo\n");
+		sync_signal(SEM_PROD);
+		
+		
 	}
-}
 
+	return 0;
+}
 

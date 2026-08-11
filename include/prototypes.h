@@ -1,4 +1,3 @@
-
 /* in file chprio.c */
 extern	pri16	chprio(pid16, pri16);
 

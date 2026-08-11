@@ -148,8 +148,3 @@ int16	stop(char *s)
 		/* Empty */;
 }
 
-int16	delay(int n)
-{
-	DELAY(n);
-	return OK;
-}

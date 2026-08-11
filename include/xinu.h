@@ -12,5 +12,6 @@
 #include <semaphore.h>
 #include <memory.h>
 #include <prototypes.h>
+#include <sync.h>
 
 #endif

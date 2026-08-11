@@ -71,8 +71,3 @@ extern	qid16	readylist;	/* global ID for list of ready processes */
 #define hibyte(x) (unsigned char)(((int)(x)>>8)&0xff)
 #define lobyte(x) (unsigned char)(((int)(x))&0xff)
 
-/* Prototypes of I/O functions used throughout the kernel */
-
-syscall	kprintf(char *fmt, ...);
-syscall	kputc(byte);
-syscall	kgetc(void);

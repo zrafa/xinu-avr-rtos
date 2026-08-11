@@ -10,5 +10,6 @@
 
 void platinit(void)
 {
+//    set_clock_32MHz();           
 }
 

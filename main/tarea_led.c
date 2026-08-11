@@ -1,21 +1,25 @@
 /*
- * tarea 1: esta tarea parpadea un led a cierta frecuencia.
+ * tarea_led: este programa parpadea el led de la placa.
+ * 
+ * Se desarrolla como un programa aislado del resto.
  */
 
 #include <xinu.h>
-#include "gpio.h"
 
 
-void led(int argc, const char * argv[])
+int led_placa(void)
 {
-	int pin = (int) argv[0];
-	int frec = (int) argv[1];
-	gpio_output(pin);
+    volatile unsigned char* DDR_B = (unsigned char*) 0x24;
+    volatile unsigned char* PUERTO_B = (unsigned char*) 0x25;
 
-	while(1) {
-		gpio_pin(pin, ON);
-		sleepms(frec);
-		gpio_pin(pin, OFF);
-		sleepms(frec);
-	}
+    *DDR_B = 0x20; // control: salida.
+
+    while (1){
+        sleepms(200);
+        *PUERTO_B |= 0x20; // high
+        sleepms(200);
+        *PUERTO_B = (*PUERTO_B & (~0x20)); // low
+    }
+
 }
+

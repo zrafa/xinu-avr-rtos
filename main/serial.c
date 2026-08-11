@@ -8,7 +8,6 @@
  *
  **********************************************************************/
 
-#include <xinu.h>
 #include <stdint.h> /* para los tipos de datos. Ej.: uint8_t */
 
 /* Completar la estructura de datos para que se superponga a los registros
@@ -112,23 +111,3 @@ void serial_put_str(char * str)
     serial_put_char('\r');
     serial_put_char('\n');
 }
-
-
-void serial_put_int (uint16 num, int length) {
-    char digits[length];
-
-    for(int i = 0; i < length; i++){
-        if(num > 0){
-            digits[i] = (num % 10) + 48;
-            num = num / 10;
-        } else {
-            digits[i] = 48;
-        }
-    }
-
-    for (int j = length-1; j >= 0; j--) {
-        serial_put_char(digits[j]);
-    }
-}
-
-

@@ -18,7 +18,7 @@
 intmask disable(void)
 {
 	int x = SREG;
-	asm("cli");	/*and disable interrupts*/
+	__asm__ __volatile__ ("cli");	/*and disable interrupts*/
 	return x;
 }
 
