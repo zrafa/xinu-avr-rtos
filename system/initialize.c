@@ -58,7 +58,6 @@ void	nulluser()
 						memptr = memptr->mnext) {
 		free_mem += memptr->mlength;
 	}
-	// kprintf("\nFreeMEM:%d (bytes)\n\n", free_mem);
 
 	/* Initialize the Null process entry */	
 

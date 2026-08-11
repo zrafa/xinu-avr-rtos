@@ -33,7 +33,6 @@ pid16	create(
 	if (((saddr = (uint8 *)getstk(ssize)) ==
 	     (uint8 *)SYSERR ) ||
 	     (pid=newpid()) == SYSERR || priority < 1 ) {
-		//avr_kprintf(m10);
 		restore(mask);
 		return SYSERR;
 	}
