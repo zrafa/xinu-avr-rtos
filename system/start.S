@@ -1,21 +1,18 @@
-/* avr specific */
-/* We do a hack for calling (insert) nulluser before main,
- * so avr-libc does everything : ld scripts, startup, etc 
- */
 #include <avr/io.h>
-
-.weak __heap_end
-.set  __heap_end, 0
 
 .macro vector name
     .weak \name
     .set \name, __vectors
     jmp \name
 .endm
+         
+    .global _start
+_start:
 
-.section .vectors
+    .section .vectors
+.global __vectors
 __vectors:
-    jmp __ctors_end
+    jmp RESET           ; Reset Handler
     vector __vector_1
     vector __vector_2
     vector __vector_3
@@ -41,6 +38,45 @@ __vectors:
     vector __vector_23
     vector __vector_24
     vector __vector_25
+    vector __vector_26
+    vector __vector_27
+    vector __vector_28
+    vector __vector_29
 
-.section .init8
-    jmp nulluser
+
+    .set    __stack, RAMEND
+    .text
+
+RESET:
+    clr     r1
+    out     _SFR_IO_ADDR(SREG), r1
+    ldi     r28,lo8(__stack)
+    ldi     r29,hi8(__stack)
+    out     _SFR_IO_ADDR(SPH), r29
+    out     _SFR_IO_ADDR(SPL), r28
+
+_do_copy_data:
+    ldi     r17, hi8(__data_end)
+    ldi     r26, lo8(__data_start)
+    ldi     r27, hi8(__data_start)
+    ldi     r30, lo8(__data_load_start)
+    ldi     r31, hi8(__data_load_start)
+    rjmp    2f
+1:  lpm     r0, Z+
+    st      X+, r0
+2:  cpi     r26, lo8(__data_end)
+    cpc     r27, r17
+    brne    1b
+
+_do_clear_bss:
+    ldi     r17, hi8(__bss_end)
+    ldi     r26, lo8(__bss_start)
+    ldi     r27, hi8(__bss_start)
+    rjmp    4f
+3:  st      X+, r1
+4:  cpi     r26, lo8(__bss_end)
+    cpc     r27, r17
+    brne    3b
+
+    jmp     nulluser
+
