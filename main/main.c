@@ -35,13 +35,13 @@ int main(void)
 
 
 	while(1) {
-		sleep(1);
+		sleep(10);
 
                 /* como esta tarea comparte el serial con otra tarea, 
                  * se lo sincroniza estilo productor-consumidor,
                  * para que cada uno envie un mensaje de manera
                  * alternada. Un mutex podría haber sido utilizado
-		 * si no es necesaria la alternancia.
+                 * si no es necesaria la alternancia.
                  */
 
 		sync_wait(SEM_COM);

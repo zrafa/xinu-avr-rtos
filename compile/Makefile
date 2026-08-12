@@ -1,8 +1,8 @@
-PLATFORM	=	-Dlgt8f328p
-F_CPU   = 4000000
+#PLATFORM	=	-Dlgt8f328p
+#F_CPU   = 4000000
 
-#PLATFORM	=	-DATMEGA
-#F_CPU   = 16000000
+PLATFORM	=	-DATMEGA
+F_CPU   = 16000000
 
 MCU     = atmega328p
 AS      = avr-as
@@ -28,7 +28,8 @@ OBJECTS = $(addprefix $(OBJDIR)/, $(notdir $(CSOURCES:.c=.o) $(ASSOURCES:.S=.o))
 
 TARGET = xinu-avr-rtos
 
-CFLAGS = -g -std=c99 -Wall -Os -mmcu=${MCU} -DF_CPU=${F_CPU} -fno-builtin -nostdlib -nostartfiles 
+CFLAGS = -g -std=c99 -Wall -Os -mmcu=${MCU} -DF_CPU=${F_CPU} -fno-builtin -nostdlib -nostartfiles
+CFLAGS += $(PLATFORM)
 
 ASFLAGS = -g -mmcu=${MCU}
 

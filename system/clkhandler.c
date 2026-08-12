@@ -1,20 +1,13 @@
 /* clkhandler.c - clkhandler */
 
-/* avr specific */
-
 #include <xinu.h>
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
-
-volatile unsigned int avr_ticks=0;
 
 /*-----------------------------------------------------------------------
  * clkhandler - high level clock interrupt handler
  *-----------------------------------------------------------------------
  */
-
-/* void clkhandler() */
 
 //ISR(TIMER0_COMPA_vect)
 ISR(TIMER2_COMPA_vect)

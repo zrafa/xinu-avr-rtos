@@ -38,11 +38,12 @@ __vectors:
     vector __vector_23
     vector __vector_24
     vector __vector_25
+#if lgt8f328p
     vector __vector_26
     vector __vector_27
     vector __vector_28
     vector __vector_29
-
+#endif
 
     .set    __stack, RAMEND
     .text

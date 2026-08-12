@@ -44,8 +44,8 @@ void	meminit(void)
 
 	/* Initialize the minheap and maxheap variables */
 
-	minheap = ptr_bss_end+1;
-	maxheap = 0x008008FF - NULLSTK;	/* AVR atmega328p stack pointer when booting */
+	minheap = (void *)ptr_bss_end+1;
+	maxheap = (void *)(0x008008FF - NULLSTK);	/* AVR atmega328p stack pointer when booting */
 					/* QUITAMOS 16 bytes para workaround */
 
 	/* Initialize the memory list as one big block */
