@@ -76,16 +76,16 @@ ctxsw:
 	std Z+30,r0		; save r30
 	pop r0			; get saved r31
 	std Z+31,r0		; save r31
-	in r0,__SP_L__	; get SP_L
-	std Z+32,r0		; save
-	in r0,__SP_H__	; get SP_H
-	std Z+33,r0		; save	
+	in r16,__SP_L__	; get SP_L
+	std Z+32,r16	; save
+	in r17,__SP_H__	; get SP_H
+	std Z+33,r17	; save	
 
 	movw r30,r22	; get address of new process save area
-	ldd r0,Z+32		; get SP_L
-	out __SP_L__,r0	; load new SP -- SWITCH STACKS
-	ldd r0,Z+33
-	out __SP_H__,r0
+	ldd r16,Z+32	; get SP_L
+	ldd r17,Z+33
+	out __SP_H__,r17
+	out __SP_L__,r16 ; load new SP -- SWITCH STACKS
 	
 	ldd r0,Z+31		; get saved r31
 	push r0			; save r31
